@@ -1,8 +1,4 @@
-/* @import-normalize; */
-
-html {
-  box-sizing: border-box;
-}
+@import 'node_modules/modern-normalize/modern-normalize.css';
 
 body {
   margin: 0;
@@ -11,6 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
 }
 
 code {
