@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Section from './components/Section';
 import { FeedbackOptions } from './components/FeedbackOptions';
 import { Statistics } from './components/Statistics';
-// import Notification from './components/Notification';
+import { Notification } from './components/Notification';
 
+let clicked = false;
 export class App extends React.Component {
   state = {
     good: 0,
@@ -12,6 +13,7 @@ export class App extends React.Component {
   };
 
   onLeaveFeeback = event => {
+    clicked = true;
     const { target } = event;
     let clickedBtn = target.id;
 
@@ -63,13 +65,17 @@ export class App extends React.Component {
             onLeaveFeeback={this.onLeaveFeeback}
           />
 
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={this.countTotalFeedback()}
-            positivePercentage={this.countPositiveFeedbackPercentage()}
-          />
+          {clicked ? (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={this.countTotalFeedback()}
+              positivePercentage={this.countPositiveFeedbackPercentage()}
+            />
+          ) : (
+            <Notification message="There is no feedback" />
+          )}
         </Section>
       </div>
     );
