@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Section } from './components/Section';
 import { FeedbackOptions } from './components/FeedbackOptions';
 import { Statistics } from './components/Statistics';
@@ -32,6 +32,7 @@ export class App extends React.Component {
         this.setState(prevState => ({
           bad: prevState.bad + 1,
         }));
+        break;
     }
   };
 
