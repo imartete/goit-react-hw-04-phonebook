@@ -56,6 +56,7 @@ export class App extends React.Component {
         style={{
           height: '100vh',
           display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
           fontSize: 24,
@@ -67,7 +68,8 @@ export class App extends React.Component {
             options={this.state}
             onLeaveFeeback={this.onLeaveFeeback}
           />
-
+        </Section>
+        <Section title="Statistics">
           {clicked ? (
             <Statistics
               good={good}
@@ -77,7 +79,7 @@ export class App extends React.Component {
               positivePercentage={this.countPositiveFeedbackPercentage()}
             />
           ) : (
-            <Notification message="There is no feedback" />
+            <Notification message="No feedback given" />
           )}
         </Section>
       </div>
