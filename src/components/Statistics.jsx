@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-export default ({ good, bad, neutral, total, positivePercentage }) => {
+export function Statistics({ good, bad, neutral, total, positivePercentage }) {
   return (
     <div>
       <h1>Statistics</h1>
@@ -14,4 +14,4 @@ export default ({ good, bad, neutral, total, positivePercentage }) => {
       </ul>
     </div>
   );
-};
+}

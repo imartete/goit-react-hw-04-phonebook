@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-export default ({ options, onLeaveFeeback }) => {
+export function FeedbackOptions({ options, onLeaveFeeback }) {
   return (
     <div>
-      <h1>Please leave feedback</h1>
       <button type="button" id="good" onClick={onLeaveFeeback}>
         Good
       </button>
@@ -16,4 +15,4 @@ export default ({ options, onLeaveFeeback }) => {
       </button>
     </div>
   );
-};
+}
