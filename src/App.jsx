@@ -33,6 +33,8 @@ export class App extends React.Component {
           bad: prevState.bad + 1,
         }));
         break;
+      default:
+        console.log('Error, no such state');
     }
   };
 
