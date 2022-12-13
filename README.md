@@ -1,5 +1,5 @@
-# goit-react-hw-11
+# goit-react-hw-02-feedback
 
-Homework 11
+Homework 02
 
-[GitHub Pages](https://imartete.github.io/goit-react-hw-01-components/)
+[GitHub Pages](https://imartete.github.io/goit-react-hw-02-feedback/)
