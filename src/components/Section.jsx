@@ -8,7 +8,7 @@ import { Children } from 'react';
 export default ({ children, title }) => {
   return (
     <div>
-      <h1>{title}</h1>
+      <h1>{title ? title : 'Your title'}</h1>
       {children}
     </div>
   );
