@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export function FeedbackOptions({ options, onLeaveFeeback }) {
+export const FeedbackOptions = ({ options, onLeaveFeeback }) => {
   return (
     <div>
       <button type="button" id="good" onClick={onLeaveFeeback}>
@@ -14,4 +14,8 @@ export function FeedbackOptions({ options, onLeaveFeeback }) {
       </button>
     </div>
   );
-}
+};
+
+FeedbackOptions.propTypes = {
+  onLeaveFeeback: PropTypes.func.isRequired,
+};

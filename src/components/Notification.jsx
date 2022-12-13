@@ -1,9 +1,13 @@
 import PropTypes from 'prop-types';
 
-export function Notification({ message }) {
+export const Notification = ({ message }) => {
   return (
     <div>
       <p>{message ? message : ''}</p>
     </div>
   );
-}
+};
+
+Notification.propTypes = {
+  message: PropTypes.string,
+};
