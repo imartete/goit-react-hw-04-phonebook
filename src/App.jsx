@@ -1,8 +1,9 @@
 import React from 'react';
 import { Section } from 'components/Section';
 import { ContactForm } from 'components/ContactForm';
+import { ContactList } from 'components/ContactList';
+import { Filter } from 'components/SearcFilter';
 import { nanoid } from 'nanoid';
-import { useState } from 'react';
 
 export class App extends React.Component {
   state = {
@@ -79,56 +80,23 @@ export class App extends React.Component {
           color: '#010101',
         }}
       >
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Name
-            <input
-              type="text"
-              name="name"
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              required
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            Number
-            <input
-              type="tel"
-              name="number"
-              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              required
-              onChange={this.handleChange}
-            />
-          </label>
-          <button type="submit">Add contact</button>
-        </form>
+        <h1>Phonebook</h1>
+        <ContactForm
+          onSubmit={this.handleSubmit}
+          onChange={this.handleChange}
+        />
         <div>
           <h1>Contacts</h1>
-          <input
-            type="search"
-            name="search"
-            onChange={this.handleSearch}
-            value={filter}
-          ></input>
-          <ul>
-            {contacts
-              .filter(contact =>
-                contact.name.toLowerCase().includes(normalizedFilter)
-              )
-              .map(el => (
-                <li key={el.id} data-id={el.id} id={el.id}>
-                  {el.name}: {el.number}
-                  <button type="remove" onClick={this.removeContact}>
-                    Delete
-                  </button>
-                </li>
-              ))}
-          </ul>
+          <Filter
+            searchItemHandler={this.handleSearch}
+            value={normalizedFilter}
+          />
+          <ContactList
+            contactsArray={contacts}
+            filter={filter}
+            removeItem={this.removeContact}
+          />
         </div>
-        {/* <Section title=""></Section> */}
-        <div></div>
       </div>
     );
   }
