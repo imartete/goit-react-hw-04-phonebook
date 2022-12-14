@@ -13,8 +13,6 @@ export class App extends React.Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
   addContact = ({ name, number }) => {
@@ -28,14 +26,6 @@ export class App extends React.Component {
     } else {
       alert(`${name} is alredy in contacts.`);
     }
-    // TODO прокинути з сабміту дані в параментри з компоненту форми
-  };
-
-  handleChange = event => {
-    const { target, currentTarget } = event;
-    this.setState({
-      [target.name]: target.value,
-    });
   };
 
   handleSearch = event => {
@@ -43,15 +33,6 @@ export class App extends React.Component {
     this.setState({
       filter: target.value,
     });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    const { currentTarget } = event;
-    const form = currentTarget;
-    const name = form.elements.name.value;
-    const number = form.elements.number.value;
-    this.addContact({ name, number });
   };
 
   removeContact = event => {
@@ -80,10 +61,7 @@ export class App extends React.Component {
         }}
       >
         <h1>Phonebook</h1>
-        <ContactForm
-          onSubmit={this.handleSubmit}
-          onChange={this.handleChange}
-        />
+        <ContactForm onSubmit={this.addContact} />
         <div>
           <h1>Contacts</h1>
           <Filter
