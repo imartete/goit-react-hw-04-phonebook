@@ -7,6 +7,10 @@ export class ContactForm extends React.Component {
     number: '',
   };
 
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
+
   handleChange = event => {
     const { target } = event;
     this.setState({

@@ -10,3 +10,8 @@ export const Filter = ({ searchItemHandler, filter }) => {
     ></input>
   );
 };
+
+Filter.propTypes = {
+  searchItemHandler: PropTypes.func.isRequired,
+  filter: PropTypes.string,
+};

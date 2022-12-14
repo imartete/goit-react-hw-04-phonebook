@@ -1,18 +1,19 @@
 import PropTypes from 'prop-types';
 
-export const ContactListItem = ({
-  contactsArray,
-  filterKey,
-  removeListItemHandler,
-}) => {
-  return contactsArray
-    .filter(contact => contact.name.toLowerCase().includes(filterKey))
-    .map(el => (
-      <li key={el.id} data-id={el.id} id={el.id}>
-        {el.name}: {el.number}
-        <button type="remove" onClick={removeListItemHandler}>
-          Delete
-        </button>
-      </li>
-    ));
+export const ContactListItem = ({ id, name, number, onClick }) => {
+  return (
+    <li id={id}>
+      {name}: {number}
+      <button type="remove" onClick={onClick}>
+        Delete
+      </button>
+    </li>
+  );
+};
+
+ContactListItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

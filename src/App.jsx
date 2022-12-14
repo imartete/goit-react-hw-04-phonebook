@@ -28,19 +28,19 @@ export class App extends React.Component {
     }
   };
 
-  handleSearch = event => {
-    const { target } = event;
-    this.setState({
-      filter: target.value,
-    });
-  };
-
   removeContact = event => {
     const { contacts } = this.state;
     const contactId = event.target.closest('LI').id;
 
     this.setState({
       contacts: contacts.filter(el => el.id != contactId),
+    });
+  };
+
+  handleSearch = event => {
+    const { target } = event;
+    this.setState({
+      filter: target.value,
     });
   };
 
@@ -70,7 +70,7 @@ export class App extends React.Component {
           />
           <ContactList
             contactsArray={contacts}
-            filter={filter}
+            filterKey={filter}
             removeItem={this.removeContact}
           />
         </div>
