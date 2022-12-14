@@ -4,11 +4,6 @@ import { ContactForm } from 'components/ContactForm';
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 
-const INITIAL_STATE = {
-  filter: '',
-  name: '',
-  number: '',
-};
 export class App extends React.Component {
   state = {
     contacts: [
@@ -48,7 +43,6 @@ export class App extends React.Component {
     this.setState({
       filter: target.value,
     });
-    console.log(this.state.filter);
   };
 
   handleSubmit = event => {
@@ -58,22 +52,15 @@ export class App extends React.Component {
     const name = form.elements.name.value;
     const number = form.elements.number.value;
     this.addContact({ name, number });
-    console.log(this.state);
-    // this.reset();
   };
 
   removeContact = event => {
     const { contacts } = this.state;
     const contactId = event.target.closest('LI').id;
-    console.dir(contactId);
 
     this.setState({
       contacts: contacts.filter(el => el.id != contactId),
     });
-  };
-
-  reset = () => {
-    this.setState({ ...INITIAL_STATE });
   };
 
   render() {
@@ -124,7 +111,6 @@ export class App extends React.Component {
             name="search"
             onChange={this.handleSearch}
             value={filter}
-            // onSubmit={this.test}
           ></input>
           <ul>
             {contacts
