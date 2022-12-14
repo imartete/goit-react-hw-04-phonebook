@@ -46,7 +46,7 @@ export class App extends React.Component {
 
   render() {
     const { contacts, filter } = this.state;
-    const normalizedFilter = filter.toLowerCase();
+    const normalizedFilter = filter.toLowerCase().trim();
 
     return (
       <div
@@ -70,7 +70,7 @@ export class App extends React.Component {
           />
           <ContactList
             contactsArray={contacts}
-            filterKey={filter}
+            filterKey={normalizedFilter}
             removeItem={this.removeContact}
           />
         </div>
