@@ -5,7 +5,7 @@ export const Filter = ({ searchItemHandler, filter }) => {
     <input
       type="search"
       name="search"
-      onChange={searchItemHandler}
+      onChange={event => searchItemHandler(event.target.value)}
       value={filter}
     ></input>
   );

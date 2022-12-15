@@ -12,36 +12,42 @@ export class App extends React.Component {
 
   addContact = ({ name, number }) => {
     const { contacts } = this.state;
-    const existingContact = contacts.some(contact => contact.name === name);
+    const existingContact = contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
 
     if (!existingContact) {
       this.setState({
-        contacts: [...contacts, { name, number, id: nanoid() }],
+        contacts: [{ name, number, id: nanoid() }, ...contacts],
       });
-    } else {
-      alert(`${name} is alredy in contacts.`);
+      return;
     }
+    alert(`${name} is alredy in contacts.`);
   };
 
-  removeContact = event => {
-    const { contacts } = this.state;
-    const contactId = event.target.closest('LI').id;
-
+  removeContact = contactId => {
     this.setState({
-      contacts: contacts.filter(el => el.id !== contactId),
+      contacts: this.state.contacts.filter(el => el.id !== contactId),
     });
   };
 
-  handleSearch = event => {
-    const { target } = event;
+  handleSearch = value => {
     this.setState({
-      filter: target.value,
+      filter: value,
     });
+  };
+
+  getVisibleContacts = () => {
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase().trim();
+
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
   };
 
   render() {
-    const { contacts, filter } = this.state;
-    const normalizedFilter = filter.toLowerCase().trim();
+    const visibleContacts = this.getVisibleContacts();
 
     return (
       <div
@@ -61,11 +67,10 @@ export class App extends React.Component {
         <h1>Contacts</h1>
         <Filter
           searchItemHandler={this.handleSearch}
-          value={normalizedFilter}
+          value={this.state.filter}
         />
         <ContactList
-          contactsArray={contacts}
-          filterKey={normalizedFilter}
+          contacts={visibleContacts}
           removeItem={this.removeContact}
         />
       </div>
