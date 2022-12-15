@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContactForm } from 'components/ContactForm';
+import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList';
 import { Filter } from 'components/SearcFilter';
 import { nanoid } from 'nanoid';
@@ -46,29 +46,28 @@ export class App extends React.Component {
     return (
       <div
         style={{
-          height: '100vh',
+          height: '100%',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center',
+          alignItems: 'start',
           fontSize: 24,
           color: '#010101',
+          margin: '20px',
         }}
       >
         <h1>Phonebook</h1>
         <ContactForm onSubmit={this.addContact} />
-        <div>
-          <h1>Contacts</h1>
-          <Filter
-            searchItemHandler={this.handleSearch}
-            value={normalizedFilter}
-          />
-          <ContactList
-            contactsArray={contacts}
-            filterKey={normalizedFilter}
-            removeItem={this.removeContact}
-          />
-        </div>
+        <h1>Contacts</h1>
+        <Filter
+          searchItemHandler={this.handleSearch}
+          value={normalizedFilter}
+        />
+        <ContactList
+          contactsArray={contacts}
+          filterKey={normalizedFilter}
+          removeItem={this.removeContact}
+        />
       </div>
     );
   }
