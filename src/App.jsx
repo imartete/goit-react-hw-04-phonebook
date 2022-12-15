@@ -28,7 +28,7 @@ export class App extends React.Component {
     const contactId = event.target.closest('LI').id;
 
     this.setState({
-      contacts: contacts.filter(el => el.id != contactId),
+      contacts: contacts.filter(el => el.id !== contactId),
     });
   };
 
