@@ -23,6 +23,7 @@ export class ContactForm extends React.Component {
     event.preventDefault();
     const { name, number } = this.state;
     this.props.onSubmit({ name, number });
+    event.currentTarget.reset();
   };
 
   render() {
