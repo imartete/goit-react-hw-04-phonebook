@@ -3,7 +3,14 @@ import { ContactListItem } from './ContactListItem';
 
 export const ContactList = ({ contactsArray, filterKey, removeItem }) => {
   return (
-    <ul>
+    <ul
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '7px',
+        padding: '0',
+      }}
+    >
       {contactsArray
         .filter(contact => contact.name.toLowerCase().includes(filterKey))
         .map(contact => (

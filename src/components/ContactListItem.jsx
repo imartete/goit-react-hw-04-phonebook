@@ -2,7 +2,13 @@ import PropTypes from 'prop-types';
 
 export const ContactListItem = ({ id, name, number, onClick }) => {
   return (
-    <li id={id}>
+    <li
+      id={id}
+      style={{
+        display: 'flex',
+        gap: '5px',
+      }}
+    >
       {name}: {number}
       <button type="remove" onClick={onClick}>
         Delete
