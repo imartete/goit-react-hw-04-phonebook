@@ -1,16 +1,10 @@
 import PropTypes from 'prop-types';
-import { ContactListItem } from './ContactListItem';
+import { ContactListItem } from '../ContactListItem';
+import './ContactList.modules.css';
 
 export const ContactList = ({ contacts, removeItem }) => {
   return (
-    <ul
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '7px',
-        padding: '0',
-      }}
-    >
+    <ul>
       {contacts.map(contact => (
         <ContactListItem
           key={contact.id}
