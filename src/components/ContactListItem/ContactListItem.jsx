@@ -6,7 +6,7 @@ export const ContactListItem = ({ id, name, number, onClick }) => {
     <li>
       {name}: {number}
       <button
-        type="remove"
+        type="button"
         onClick={() => onClick(id)}
         className="button-delete"
       >
