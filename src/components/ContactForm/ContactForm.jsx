@@ -51,7 +51,9 @@ export class ContactForm extends React.Component {
             onChange={this.handleChange}
           />
         </label>
-        <button type="submit">Add contact</button>
+        <button type="submit" className="button-submit">
+          Add contact
+        </button>
       </form>
     );
   }
