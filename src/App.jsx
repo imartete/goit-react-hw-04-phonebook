@@ -2,7 +2,7 @@ import React from 'react';
 import { Section } from 'components/Section/Section';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
-import { Filter } from 'components/SearcFilter';
+import { Filter } from 'components/SearchFilter/SearcFilter';
 import { nanoid } from 'nanoid';
 
 export class App extends React.Component {
