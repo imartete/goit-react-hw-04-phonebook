@@ -1,4 +1,5 @@
 import React from 'react';
+import { Section } from 'components/Section/Section';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList';
 import { Filter } from 'components/SearcFilter';
@@ -50,29 +51,20 @@ export class App extends React.Component {
     const visibleContacts = this.getVisibleContacts();
 
     return (
-      <div
-        style={{
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'start',
-          fontSize: 24,
-          color: '#010101',
-          margin: '20px',
-        }}
-      >
-        <h1>Phonebook</h1>
-        <ContactForm onSubmit={this.addContact} />
-        <h1>Contacts</h1>
-        <Filter
-          searchItemHandler={this.handleSearch}
-          value={this.state.filter}
-        />
-        <ContactList
-          contacts={visibleContacts}
-          removeItem={this.removeContact}
-        />
+      <div>
+        <Section title={'Phonebook'}>
+          <ContactForm onSubmit={this.addContact} />
+        </Section>
+        <Section title={'Contacts'}>
+          <Filter
+            searchItemHandler={this.handleSearch}
+            value={this.state.filter}
+          />
+          <ContactList
+            contacts={visibleContacts}
+            removeItem={this.removeContact}
+          />
+        </Section>
       </div>
     );
   }
