@@ -49,7 +49,7 @@ export class App extends React.Component {
   };
 
   componentDidUpdate = prevState => {
-    if (this.state.contacts != prevState.contacts) {
+    if (this.state.contacts !== prevState.contacts) {
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
   };
