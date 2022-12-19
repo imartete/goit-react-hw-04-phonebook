@@ -1,5 +1,5 @@
-# goit-react-hw-02-phonebook
+# goit-react-hw-03-phonebook
 
-Homework 02
+Homework 03
 
-[GitHub Pages](https://imartete.github.io/goit-react-hw-02-phonebook/)
+[GitHub Pages](https://imartete.github.io/goit-react-hw-03-phonebook/)
