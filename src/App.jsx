@@ -1,5 +1,6 @@
 import React from 'react';
 import { Section } from 'components/Section/Section';
+import { Notification } from 'components/Notification/Notification';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/SearchFilter/SearcFilter';
@@ -49,6 +50,7 @@ export class App extends React.Component {
 
   render() {
     const visibleContacts = this.getVisibleContacts();
+    const { contacts } = this.state;
 
     return (
       <div>
@@ -56,14 +58,20 @@ export class App extends React.Component {
           <ContactForm onSubmit={this.addContact} />
         </Section>
         <Section title={'Contacts'}>
-          <Filter
-            searchItemHandler={this.handleSearch}
-            value={this.state.filter}
-          />
-          <ContactList
-            contacts={visibleContacts}
-            removeItem={this.removeContact}
-          />
+          {contacts.length ? (
+            <>
+              <Filter
+                searchItemHandler={this.handleSearch}
+                value={this.state.filter}
+              />
+              <ContactList
+                contacts={visibleContacts}
+                removeItem={this.removeContact}
+              />
+            </>
+          ) : (
+            <Notification message="No contacts added" />
+          )}
         </Section>
       </div>
     );
