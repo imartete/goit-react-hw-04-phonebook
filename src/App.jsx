@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import { Section } from 'components/Section/Section';
 import { Notification } from 'components/Notification/Notification';
 import { ContactForm } from 'components/ContactForm/ContactForm';
@@ -6,85 +7,67 @@ import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/SearchFilter/SearcFilter';
 import { nanoid } from 'nanoid';
 
-export class App extends React.Component {
-  state = {
-    contacts: [],
-    filter: '',
-  };
+const LOCAL_STORAGE_KEY = 'contacts';
 
-  componentDidMount = () => {
-    const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
-    if (parsedContacts) this.setState({ contacts: parsedContacts });
-  };
+export function App() {
+  const storedContacts = localStorage.getItem(LOCAL_STORAGE_KEY);
+  const [contacts, setContact] = useState(JSON.parse(storedContacts) ?? []);
+  const [filter, setFilter] = useState('');
 
-  componentDidUpdate = prevState => {
-    if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  };
+  useEffect(
+    () => localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts)),
+    [contacts]
+  );
 
-  addContact = ({ name, number }) => {
-    const { contacts } = this.state;
+  function addContact({ name, number }) {
     const existingContact = contacts.some(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
 
     if (!existingContact) {
-      this.setState({
-        contacts: [{ name, number, id: nanoid() }, ...contacts],
-      });
+      setContact(prevContacts => [
+        { name, number, id: nanoid() },
+        ...prevContacts,
+      ]);
       return;
     }
     alert(`${name} is alredy in contacts.`);
-  };
+  }
 
-  removeContact = contactId => {
-    this.setState({
-      contacts: this.state.contacts.filter(el => el.id !== contactId),
-    });
-  };
+  function removeContact(contactId) {
+    setContact(contacts.filter(el => el.id !== contactId));
+  }
 
-  handleSearch = value => {
-    this.setState({
-      filter: value,
-    });
-  };
+  function handleSearch(value) {
+    setFilter(value);
+  }
 
-  getVisibleContacts = () => {
-    const { contacts, filter } = this.state;
+  function getVisibleContacts() {
     const normalizedFilter = filter.toLowerCase().trim();
 
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
-  };
-
-  render() {
-    const visibleContacts = this.getVisibleContacts();
-    const { contacts } = this.state;
-
-    return (
-      <div>
-        <Section title={'Phonebook'}>
-          <ContactForm onSubmit={this.addContact} />
-        </Section>
-        <Section title={'Contacts'}>
-          {contacts.length ? (
-            <>
-              <Filter
-                searchItemHandler={this.handleSearch}
-                value={this.state.filter}
-              />
-              <ContactList
-                contacts={visibleContacts}
-                removeItem={this.removeContact}
-              />
-            </>
-          ) : (
-            <Notification message="No contacts added" />
-          )}
-        </Section>
-      </div>
-    );
   }
+
+  return (
+    <div>
+      <Section title={'Phonebook'}>
+        <ContactForm onSubmit={addContact} />
+      </Section>
+      <Section title={'Contacts'}>
+        {contacts.length ? (
+          <>
+            <Filter searchItemHandler={handleSearch} value={filter} />
+            <ContactList
+              contacts={getVisibleContacts()}
+              removeItem={removeContact}
+            />
+          </>
+        ) : (
+          <Notification message="No contacts added" />
+        )}
+      </Section>
+    </div>
+  );
 }
