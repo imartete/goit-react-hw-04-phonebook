@@ -10,8 +10,9 @@ import { nanoid } from 'nanoid';
 const LOCAL_STORAGE_KEY = 'contacts';
 
 export function App() {
-  const storedContacts = localStorage.getItem(LOCAL_STORAGE_KEY);
-  const [contacts, setContact] = useState(JSON.parse(storedContacts) ?? []);
+  const [contacts, setContact] = useState(
+    () => JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) ?? []
+  );
   const [filter, setFilter] = useState('');
 
   useEffect(

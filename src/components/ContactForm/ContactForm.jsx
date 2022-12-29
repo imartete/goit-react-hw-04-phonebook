@@ -4,19 +4,17 @@ import { useState } from 'react';
 import './ContactForm.modules.css';
 
 export function ContactForm({ onSubmit }) {
-  const [contact, setContact] = useState({ name: '', number: '' });
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
   function handleChange(event) {
-    const { target } = event;
-    setContact(prevContact => ({
-      ...prevContact,
-      [target.name]: target.value,
-    }));
+    const { name, value } = event.target;
+    if (name === 'name') setName(value);
+    if (name === 'number') setNumber(value);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    const { name, number } = contact;
     onSubmit({ name, number });
     event.currentTarget.reset();
   }
